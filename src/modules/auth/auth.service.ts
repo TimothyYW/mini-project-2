@@ -7,6 +7,7 @@ import { RegisterDTO } from "./dto/register.dto";
 import { MailService } from "../mail/mail.service";
 import { ForgotPasswordDTO } from "./dto/forgot-password.dto";
 import { ResetPasswordDTO } from "./dto/reset-password.dto";
+import { BASE_URL_FE } from "../../config/env";
 
 export class AuthService {
   prisma: PrismaService;
@@ -74,7 +75,7 @@ export class AuthService {
       "Forgot Password",
       "forgot-password",
       {
-        resetUrl: `http://localhost:3000/reset-password/${accessToken}`,
+        resetUrl: `${BASE_URL_FE}/reset-password?token=${accessToken}`,
       }
     );
 
