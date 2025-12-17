@@ -1,13 +1,13 @@
 import { sign } from "jsonwebtoken";
+import { BASE_URL_FE } from "../../config/env";
 import { ApiError } from "../../utils/api-error";
 import { comparePassword, hashPassword } from "../../utils/password";
+import { MailService } from "../mail/mail.service";
 import { PrismaService } from "../prisma/prisma.service";
+import { ForgotPasswordDTO } from "./dto/forgot-password.dto";
 import { LoginDTO } from "./dto/login.dto";
 import { RegisterDTO } from "./dto/register.dto";
-import { MailService } from "../mail/mail.service";
-import { ForgotPasswordDTO } from "./dto/forgot-password.dto";
 import { ResetPasswordDTO } from "./dto/reset-password.dto";
-import { BASE_URL_FE } from "../../config/env";
 
 export class AuthService {
   prisma: PrismaService;
@@ -75,7 +75,7 @@ export class AuthService {
       "Forgot Password",
       "forgot-password",
       {
-        resetUrl: `${BASE_URL_FE}/reset-password?token=${accessToken}`,
+        resetUrl: `${BASE_URL_FE}/reset-password/${accessToken}`,
       }
     );
 
